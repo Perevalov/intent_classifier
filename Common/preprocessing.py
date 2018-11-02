@@ -39,6 +39,19 @@ def preprocess_list(list_):
         new_list.append(' '.join(w for w in new_words))
     return new_list
 
+def preprocess_eng_list(list_):
+    new_list = []
+    for l in list_:
+        words = tokenizer.tokenize(l)
+        
+        new_words = [word for word in words 
+                        if morph.parse(word)[0].normal_form not in stopwords #morph.parse(jam.FixFragment(word))[0].normal_form not in stopwords 
+                        and not any(char.isdigit() for char in word)
+                        and morph.parse(word)[0].normal_form.lower() not in custom_stopwords #morph.parse(jam.FixFragment(word))[0].normal_form.lower() not in custom_stopwords
+                    ]
+        new_list.append(' '.join(w for w in new_words))
+    return new_list
+
 def sentence2list(sentence):
     words = tokenizer.tokenize(sentence)
     words_ = []
