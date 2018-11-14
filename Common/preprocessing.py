@@ -35,11 +35,11 @@ def preprocess_list(list_):
     new_list = []
     for l in list_:
         
-        for rule in list(ner.rules.keys()):
-            parser = ner.Parser(ner.rules[rule])
-            for match in parser.findall(l):
-                for _ in match.tokens:
-                    l=l.replace(_.value,rule)
+        """for rule in list(ner.rules.keys()):
+                                    parser = ner.Parser(ner.rules[rule])
+                                    for match in parser.findall(l):
+                                        for _ in match.tokens:
+                                            l=l.replace(_.value,rule)"""
         
         words = tokenizer.tokenize(l)
         
